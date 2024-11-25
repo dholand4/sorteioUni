@@ -98,6 +98,7 @@ button:hover {
     /* Fundo cinza claro */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .numeros-sorteados span {
