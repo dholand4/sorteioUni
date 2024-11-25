@@ -1,9 +1,6 @@
-// script.js
-
 const premios = [
-    { tipo: "Copo", quantidade: 10 },
     { tipo: "Agenda", quantidade: 10 },
-    { tipo: "Bombom", quantidade: 80 }
+    { tipo: "Bombom", quantidade: 50 }
 ];
 
 // Recuperar prêmios sorteados do Local Storage
@@ -24,7 +21,7 @@ function carregarNumerosSorteados() {
 
 // Função para sortear prêmio com probabilidades
 function sortearNumero() {
-    if (sorteados.length === 100) { // Limita o número total de prêmios sorteados
+    if (sorteados.length === 60) { // Limita o número total de prêmios sorteados
         alert("Todos os prêmios já foram sorteados!");
         return;
     }
@@ -35,25 +32,35 @@ function sortearNumero() {
     premioEl.style.animation = "destaque 0.8s ease infinite";
 
     setTimeout(() => {
-        // Sortear prêmio com probabilidades
         let premio = "Sem prêmio";
-        const random = Math.random();
+        let tentativa = 0;
 
-        // Probabilidades: 70% Bombom, 15% Copo, 15% Agenda
-        if (random < 0.70) {
-            premio = "Bombom";
-        } else if (random < 0.85) {
-            premio = "Copo";
-        } else {
-            premio = "Agenda";
+        while (tentativa < 3) { // Tentar sortear até 3 vezes, caso o prêmio não esteja disponível
+            const random = Math.random();
+
+            // Probabilidades: 70% Bombom, 15% Agenda
+            if (random < 0.90) {
+                premio = "Bombom"; // 90%
+            } else if (random < 1) {
+                premio = "Agenda"; // 10%
+            } else {
+                premio = "Sem prêmio"; // Restante
+            }
+
+            // Verificar a disponibilidade do prêmio
+            const premioIndex = premios.findIndex(p => p.tipo === premio);
+            if (premioIndex !== -1 && premios[premioIndex].quantidade > 0) {
+                premios[premioIndex].quantidade--;
+                break;
+            } else {
+                premio = "Sem prêmio";
+            }
+
+            tentativa++;
         }
 
-        // Verificar a disponibilidade do prêmio
-        const premioIndex = premios.findIndex(p => p.tipo === premio);
-        if (premioIndex !== -1 && premios[premioIndex].quantidade > 0) {
-            premios[premioIndex].quantidade--;
-        } else {
-            premio = "Sem prêmio";
+        if (premio === "Sem prêmio" && premios.every(p => p.quantidade === 0)) {
+            alert("Todos os prêmios acabaram!");
         }
 
         // Atualizar exibição
@@ -70,14 +77,10 @@ function sortearNumero() {
 
 // Função para limpar o sorteio
 function limparSorteio() {
-    // Limpar sorteados no Local Storage e na página
     sorteados = [];
     localStorage.removeItem("sorteados");
 
-    // Limpar todos os cookies
-    limparCookies();
-
-    // Resetar contador para 1
+    // Resetar o contador
     contador = 1;
 
     // Atualizar a interface
@@ -85,18 +88,6 @@ function limparSorteio() {
     premioEl.textContent = "";
 
     carregarNumerosSorteados(); // Atualiza a lista de sorteados
-}
-
-// Função para limpar cookies
-function limparCookies() {
-    // Obter todos os cookies
-    const cookies = document.cookie.split(";");
-
-    // Expirar todos os cookies
-    cookies.forEach(cookie => {
-        const cookieName = cookie.split("=")[0].trim();
-        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
-    });
 }
 
 // Carregar a lista inicial ao abrir a página
