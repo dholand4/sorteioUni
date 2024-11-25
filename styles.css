@@ -1,0 +1,132 @@
+/* styles.css */
+
+/* Configuração geral */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background: linear-gradient(135deg, #ffffff, #e0e0e0);
+    /* Fundo branco para cinza */
+    color: #000000;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Centralizar no meio da tela */
+}
+
+.container {
+    max-width: 600px;
+    /* Reduzir a largura do container */
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(180deg, #ffffff, #f5f5f5);
+    /* Gradiente mais sutil */
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Header */
+header h1 {
+    font-size: 2rem;
+    /* Reduzir tamanho do título */
+    margin: 0 0 10px;
+    color: #ff9800;
+    /* Laranja */
+}
+
+header p {
+    color: #333333;
+    /* Texto cinza escuro */
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    /* Texto menor */
+}
+
+/* Botão */
+button {
+    background: linear-gradient(135deg, #ff9800, #e65100);
+    /* Tons de laranja */
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    /* Botão menor */
+    font-size: 1rem;
+    /* Texto menor */
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 152, 0, 0.6);
+    /* Sombra laranja */
+}
+
+/* Resultado */
+.resultado {
+    margin: 20px 0;
+}
+
+.premio-destaque {
+    font-size: 2rem;
+    /* Menor destaque */
+    font-weight: bold;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+    background: #ff9800;
+    /* Fundo laranja */
+    color: #ffffff;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+    animation: destaque 0.8s ease;
+}
+
+/* Lista de prêmios */
+.numeros-sorteados {
+    max-height: 150px;
+    /* Altura menor */
+    overflow-y: auto;
+    border: 2px solid #e65100;
+    /* Laranja escuro */
+    border-radius: 10px;
+    padding: 10px;
+    background: #f5f5f5;
+    /* Fundo cinza claro */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 15px;
+}
+
+.numeros-sorteados span {
+    display: inline-block;
+    background: #ff9800;
+    /* Fundo laranja */
+    color: #000000;
+    /* Texto preto */
+    padding: 8px;
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    /* Texto menor */
+    min-width: 40px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Animação de destaque */
+@keyframes destaque {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
