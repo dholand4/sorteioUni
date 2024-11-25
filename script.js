@@ -24,7 +24,7 @@ function carregarNumerosSorteados() {
 
 // Função para sortear prêmio com probabilidades
 function sortearNumero() {
-    if (sorteados.length === 120) { // Limita o número total de prêmios sorteados
+    if (sorteados.length === 100) { // Limita o número total de prêmios sorteados
         alert("Todos os prêmios já foram sorteados!");
         return;
     }
